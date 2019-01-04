@@ -7,3 +7,4 @@
   * Step 4: do the alignment with a standard genome to produce reads counts
     * Choose standard genome from different files on Ensembl
     * Need a DNA file and gene set files
+  * Step 5: finish the pipeline (ex: nextflow.io) which adapt to our needs
