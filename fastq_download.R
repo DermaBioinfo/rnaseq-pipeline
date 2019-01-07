@@ -3,13 +3,19 @@ biocLite('SRAdb')
 biocLite('DBI')
 library(SRAdb)
 library(DBI)
+library("xlsx")
 
-srafile <- paste0(getwd(), "/SRAmetadb.sqlite")
+srafile <- "SRAmetadb.sqlite"
+project <- c("SRP136742")
+runs <- c("SRR6916965")
+
 if (!file.exists(srafile)) {
   srafile = getSRAdbFile()
 }
 
 con = dbConnect(RSQLite::SQLite(), srafile)
-SRA.list <- listSRAfile('SRP026197', con)
-in_acc <- c("SRR6916965")
-getSRAfile(in_acc, con, fileType = 'fastq')
+# listSRAfile returns info which is not diff from getSRAinfo
+SRA.list <- listSRAfile(project, con)
+
+getSRAfile(runs, con, fileType = 'fastq')
+write.xlsx(SRA.list, "SRP136742_metadata.xlsx", col.names=TRUE, row.names=TRUE, append=FALSE)
