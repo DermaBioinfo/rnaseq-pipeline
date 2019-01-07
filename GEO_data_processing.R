@@ -6,4 +6,5 @@ library("xlsx")
 
 gds <- getGEO("GSE112509")
 data <- pData(gds[[1]])
+data$experiment <- gsub(".*=", "", data$relation.1)
 write.xlsx(data, "GSE112509_metadata.xlsx", col.names=TRUE, row.names=TRUE, append=FALSE)
