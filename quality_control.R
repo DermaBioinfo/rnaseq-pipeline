@@ -1,6 +1,11 @@
 if (!requireNamespace("BiocManager", quietly=TRUE))
   install.packages("BiocManager")
 BiocManager::install("Rqc")
+BiocManager::install("QuasR", version = "3.8")
 
 library("Rqc")
+library("QuasR")
 qa <- rqc(path=getwd(), pattern = ".fastq.gz")
+infiles <- list.files(getwd(), pattern=".fastq.gz")
+outfiles <- paste0("qualified_sequences/", infiles)
+preprocessReads(infiles, outfiles)
