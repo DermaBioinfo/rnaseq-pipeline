@@ -1,4 +1,8 @@
 source('http://bioconductor.org/biocLite.R')
+
+# JG: With this command you are re-installing
+# the packages every time. Use biocLite(...) once
+# and then load the library using the library command
 biocLite('SRAdb')
 biocLite('DBI')
 library(SRAdb)
